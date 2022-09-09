@@ -139,7 +139,11 @@
         var sortedPropertyKeys = Object.keys(f.properties).sort((a,b) => a.localeCompare(b))
         var h = "<p>";
         sortedPropertyKeys.forEach(k => {
-          h += "<b>" + k + ":</b> " + f.properties[k] + "<br/>"
+          var v = f.properties[k];
+          if(v.toString().startsWith('http')) {
+            v = `<a target="_blank" href="${v}">${v}</a>`
+          }
+          h += "<b>" + k + ":</b> " + v + "<br/>"
         })
         h += "</p>";
         return h
